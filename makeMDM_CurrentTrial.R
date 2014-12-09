@@ -2,10 +2,12 @@
   # and NrOfStudies surely has to change.
 setwd("C:/data_2014/Thesis/prt_sdm_automation/BV-MDM_automator")
 # List of all subjects and bolds
-subList = c("WIT001", "WIT002", "WIT003", "WIT004", "WIT005", "WIT006", "WIT007", "WIT008",
+subList = c(#"WIT001", #Subject 001 is weird right now...
+            "WIT002", "WIT003", "WIT004", "WIT005", "WIT006", "WIT007", "WIT008",
             "WIT009", "WIT010", "WIT011", "WIT012", "WIT013", "WIT014", "WIT015", "WIT016",
             "WIT017", "WIT018",
-            "WIT101", "WIT102", "WIT103", "WIT104", "WIT105", "WIT106", "WIT107", "WIT108",
+            #"WIT101", # Subject 101 was non-white, maybe his behavior is weird (really loves gun button, at least)
+            "WIT102", "WIT103", "WIT104", "WIT105", "WIT106", "WIT107", "WIT108",
             "WIT109", "WIT110", "WIT111", "WIT112", "WIT113", "WIT114", "WIT115", "WIT116",
             "WIT117", "WIT118", "WIT119", "WIT120", "WIT121", "WIT123")
 boldList = c("b1", "b2", "b3", "b4", "b5", "b6")
@@ -43,11 +45,11 @@ PSCTransformation:    0
 zTransformation:      1
 SeparatePredictors:   0
 
-NrOfStudies:          224
+NrOfStudies:          213
 "
 
 # Write that bitch
-cat(header, file="CurrentTrial_224.mdm")
-write(t(mdm), file="CurrentTrial_224.mdm", append=T)
+cat(header, file="CurrentTrial_213.mdm")
+write(t(mdm), file="CurrentTrial_213.mdm", append=T)
 
 # You'll still need to delete the bad bold/subs by hand so BV doesn't vomit when it hits an NA
