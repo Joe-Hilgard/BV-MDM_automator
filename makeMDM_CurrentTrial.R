@@ -2,8 +2,7 @@
   # and NrOfStudies surely has to change.
 setwd("C:/data_2014/Thesis/prt_sdm_automation/BV-MDM_automator")
 # List of all subjects and bolds
-subList = c(#"WIT001", #Subject 001 is weird right now...
-            "WIT002", "WIT003", "WIT004", "WIT005", "WIT006", "WIT007", "WIT008",
+subList = c("WIT001", "WIT002", "WIT003", "WIT004", "WIT005", "WIT006", "WIT007", "WIT008",
             "WIT009", "WIT010", "WIT011", "WIT012", "WIT013", "WIT014", "WIT015", "WIT016",
             "WIT017", "WIT018",
             #"WIT101", # Subject 101 was non-white, maybe his behavior is weird (really loves gun button, at least)
@@ -13,6 +12,7 @@ subList = c(#"WIT001", #Subject 001 is weird right now...
 boldList = c("b1", "b2", "b3", "b4", "b5", "b6")
 # read in spreadsheet of bad subject-BOLDs
 bad = read.table(file="list_of_bad_BOLDS.txt")
+# read in spreadsheet of bad SDMs (oh wait there are none, ahaha)
 
 vtcList = c(); sdmList = c()
 for (sub in subList) {
@@ -34,7 +34,7 @@ for (sub in subList) {
 mdm = matrix(c(vtcList, sdmList), ncol=2, nrow=length(vtcList))
 
 # change header NrOfStudies to length(vtcList)
-length(vtcList)
+NrOfStudies = length(vtcList)
 header = "
 FileVersion:          3
 TypeOfFunctionalData: VTC
@@ -45,11 +45,11 @@ PSCTransformation:    0
 zTransformation:      1
 SeparatePredictors:   0
 
-NrOfStudies:          213
+NrOfStudies:          
 "
 
 # Write that bitch
-cat(header, file="CurrentTrial_213.mdm")
-write(t(mdm), file="CurrentTrial_213.mdm", append=T)
+cat(header, NrOfStudies, file="CurrentTrial_218.mdm")
+write(t(mdm), file="CurrentTrial_218.mdm", append=T)
 
 # You'll still need to delete the bad bold/subs by hand so BV doesn't vomit when it hits an NA
