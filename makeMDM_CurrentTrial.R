@@ -12,6 +12,7 @@ subList = c("WIT001", "WIT002", "WIT003", "WIT004", "WIT005", "WIT006", "WIT007"
 boldList = c("b1", "b2", "b3", "b4", "b5", "b6")
 # read in spreadsheet of bad subject-BOLDs
 bad = read.table(file="list_of_bad_BOLDS.txt")
+badMotion = read.delim(file="badMotion.txt")
 # read in spreadsheet of bad SDMs (oh wait there are none, ahaha)
 
 vtcList = c(); sdmList = c()
@@ -19,6 +20,7 @@ for (sub in subList) {
   for (bold in boldList) {
     subno = as.numeric(substr(sub, 4, 6)); boldno = as.numeric(substr(bold, 2, 2))
     if (length(bad$Subject[bad$Subject == subno & bad$Session == boldno]) >0) next
+    if (length(badMotion$subject[badMotion$subject == subno & badMotion$bold == boldno]) >0) next
     vtcFile = paste("\"/data/BartholowLab/JH_racebias/analysis/",
                     sub, "/",
                     sub, "_", bold, "_SCCAI2_3DMCTS_SD3DSS4.00mm_TAL.vtc\"",
@@ -49,7 +51,7 @@ NrOfStudies:
 "
 
 # Write that bitch
-cat(header, NrOfStudies, file="CurrentTrial_218.mdm")
-write(t(mdm), file="CurrentTrial_218.mdm", append=T)
+cat(header, NrOfStudies, file="Con-Incon_218.mdm")
+write(t(mdm), file="Con-Incon_218.mdm", append=T)
 
 # You'll still need to delete the bad bold/subs by hand so BV doesn't vomit when it hits an NA
