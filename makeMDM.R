@@ -25,7 +25,7 @@ for (sub in subList) {
                     sub, "/",
                     sub, "_", bold, "_SCCAI2_3DMCTS_SD3DSS4.00mm_TAL.vtc\"",
                     sep="")
-    sdmFile = paste("\"/data/BartholowLab/JH_racebias/analysis/SDMs",
+    sdmFile = paste("\"/data/BartholowLab/JH_racebias/analysis/SDMs/",
                     sub, "_", bold, ".sdm\"",
                     sep="")
     vtcList = c(vtcList, vtcFile)
