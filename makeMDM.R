@@ -1,6 +1,6 @@
 # NOTE: not sure if this header is appropriate. RFX=0 is particularly troubling,
   # and NrOfStudies surely has to change.
-setwd("C:/data_2014/Thesis/prt_sdm_automation/BV-MDM_automator")
+
 # List of all subjects and bolds
 subList = c("WIT001", "WIT002", "WIT003", "WIT004", "WIT005", "WIT006", "WIT007", "WIT008",
             "WIT009", "WIT010", "WIT011", "WIT012", "WIT013", "WIT014", "WIT015", "WIT016",
@@ -25,8 +25,8 @@ for (sub in subList) {
                     sub, "/",
                     sub, "_", bold, "_SCCAI2_3DMCTS_SD3DSS4.00mm_TAL.vtc\"",
                     sep="")
-    sdmFile = paste("\"/data/BartholowLab/JH_racebias/analysis/SDMs/CurrentTrial/",
-                    sub, "_", bold, "_CurrentTrial.sdm\"",
+    sdmFile = paste("\"/data/BartholowLab/JH_racebias/analysis/SDMs",
+                    sub, "_", bold, ".sdm\"",
                     sep="")
     vtcList = c(vtcList, vtcFile)
     sdmList = c(sdmList, sdmFile)
@@ -47,11 +47,10 @@ PSCTransformation:    0
 zTransformation:      1
 SeparatePredictors:   0
 
-NrOfStudies:          
-"
+NrOfStudies:"
 
 # Write that bitch
-cat(header, NrOfStudies, file="Con-Incon_218.mdm")
-write(t(mdm), file="Con-Incon_218.mdm", append=T)
+cat(header, "\t", NrOfStudies, "\n", file="Current_208.mdm")
+write(t(mdm), file="Current_208.mdm", append=T)
 
 # You'll still need to delete the bad bold/subs by hand so BV doesn't vomit when it hits an NA

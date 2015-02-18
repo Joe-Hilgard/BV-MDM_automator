@@ -1,0 +1,16 @@
+Most of the WIT107 files are mislabeled as WTI107 for some reason. I guess I'd decided to just roll with it but that's a bad idea.
+WIT121 still needs to make .VTC files
+
+ALL THE VTC FILES MIGHT NEED RECONSTRUCTION BECAUSE THE AUTOMATED THING JUST WANTS TO USE THE MOST RECENT BOLD-FILE
+WHICH IS WRONG, FUCKER, IF I USE BOLD 1, USE BOLD 1'S IA AND FA FILES. FUCK. FUCK!
+No way of telling which VTC files were automated, I think. I think I have to do this all over again.
+
+HAVING TROUBLE ADDING THE MOTION CONFOUNDS BECAUSE BV ISN'T VERY CAREFUL ABOUT SEPARATING COLUMNS :(
+
+Many subjects have movement files in .RTC format rather than .SDM format
+Subject WIT104 has both. Is this a problem? Looking at it, they look quite similar.
+Difference between .sdm file and .rtc file:
+.sdm has larger header -- data starts on line 10
+.rtc has shorter header -- data starts on line 7
+Column names differ slightly:
+.sdm has "Translation BV-X [mm]" while .rtc has "X translation [mm]
