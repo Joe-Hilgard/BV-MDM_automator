@@ -11,21 +11,26 @@ subList = c("WIT001", "WIT002", "WIT003", "WIT004", "WIT005", "WIT006", "WIT007"
             "WIT117", "WIT118", "WIT119", "WIT120", "WIT121", "WIT123")
 boldList = c("b1", "b2", "b3", "b4", "b5", "b6")
 # read in spreadsheet of bad subject-BOLDs
-bad = read.table(file="list_of_bad_BOLDS.txt")
+bad = read.table(file="list_of_bad_BOLDS.txt") # bad behavior bolds (e.g. accuracy, nonresponse)
+badBold = scan(file="badBolds.txt")
 badMotion = read.delim(file="badMotion.txt")
+badSubject = read.table(file="badSubs.txt", header=T)
 # read in spreadsheet of bad SDMs (oh wait there are none, ahaha)
+
 
 vtcList = c(); sdmList = c()
 for (sub in subList) {
   for (bold in boldList) {
     subno = as.numeric(substr(sub, 4, 6)); boldno = as.numeric(substr(bold, 2, 2))
+    # these unweildly if() statements are actually necessary to get appropriate pairwise ANDs.
     if (length(bad$Subject[bad$Subject == subno & bad$Session == boldno]) >0) next
+    if (subno %in% badSubject$Subject) next
     if (length(badMotion$subject[badMotion$subject == subno & badMotion$bold == boldno]) >0) next
     vtcFile = paste("\"/data/BartholowLab/JH_racebias/analysis/",
                     sub, "/",
                     sub, "_", bold, "_SCCAI2_3DMCTS_SD3DSS4.00mm_TAL.vtc\"",
                     sep="")
-    sdmFile = paste("\"/data/BartholowLab/JH_racebias/analysis/SDMs/",
+    sdmFile = paste("\"/data/BartholowLab/JH_racebias/analysis/SDMs_PrevAcc/",
                     sub, "_", bold, ".sdm\"",
                     sep="")
     vtcList = c(vtcList, vtcFile)
@@ -50,7 +55,7 @@ SeparatePredictors:   0
 NrOfStudies:"
 
 # Write that bitch
-cat(header, "\t", NrOfStudies, "\n", file="Current_208.mdm")
-write(t(mdm), file="Current_208.mdm", append=T)
+cat(header, "\t", NrOfStudies, "\n", file="PrevAcc_208.mdm")
+write(t(mdm), file="PrevAcc_208.mdm", append=T)
 
 # You'll still need to delete the bad bold/subs by hand so BV doesn't vomit when it hits an NA
