@@ -20,10 +20,10 @@ makeMDM = function(conditionsFile) {
   # read in spreadsheet of bad subject-BOLDs
   bad = read.table(file="list_of_bad_BOLDS.txt") # bad behavior bolds (e.g. accuracy, nonresponse)
   # ^^ Maybe I should stop dropping people for excess too-slow now that I model that as a confound.
-  badBold = 
-    paste("badBolds_", suffix, ".txt", 
-          sep = "") %>%
-    read.table
+#   badBold = 
+#     paste("badBolds_", suffix, ".txt", 
+#           sep = "") %>%
+#     read.table
   badMotion = 
     paste("badMotion_", suffix, ".txt",
           sep = "") %>%
