@@ -65,7 +65,7 @@ makeMDM = function(conditionsFile) {
 FileVersion:          3
 TypeOfFunctionalData: VTC
 
-RFX-GLM:              0
+RFX-GLM:              1
 
 PSCTransformation:    0
 zTransformation:      1
